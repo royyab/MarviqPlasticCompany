@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Machine Last-Day Details</title>
+</head>
+<body>
+    <h2 th:text="'Details for Machine ' + ${machine} + ' for ' + ${date}"></h2>
+    <ul>
+        <li th:text="'Performance Percentage: ' + ${performance}"></li>
+        <li th:text="'Availability Percentage: ' + ${availability}"></li>
+        <li th:text="'Quality Percentage: ' + ${quality}"></li>
+        <li style="color: blue" th:text="'OEE: ' + ${oee}"></li>
+    </ul>
+    <div th:switch="${color}">
+        <div th:case="red" style="color:red">
+            <h2>!ALERT! TEMPERATURE WAS ABOVE 100 DEGREES CELSIUS !ALERT!</h2>
+        </div>
+        <div th:case="orange" style="color:orange">
+            <h3>TEMPERATURE WAS BETWEEN 85 AND 100 DEGREES CELSIUS FOR OVER 15 MINUTES</h3>
+        </div>
+        <div th:case="green" style="color:green">
+            <h4>Machine Temperature was valid throughout the day</h4>
+        </div>
+    </div>
+    <ul>
+        <li th:text="'Total Net Production for ' + ${machine} + ' is ' + ${ttlNetProduction}"></li>
+        <li th:text="'Percentage of Scrap vs Gross for ' + ${machine} + ' is ' + ${scrapPercentage}"></li>
+        <li th:text="'Percentage of Downtime for ' + ${machine} + ' is ' + ${downtimePercentage}"></li>
+    </ul>
+    <p th:text="'Table showing the hourly net production for ' + ${machine} + ' is:'"></p>
+        <table border="1">
+            <tr>
+                <th>HOUR</th>
+                <th>NET PRODUCTION</th>
+            </tr>
+            <tr th:each="hour, iterationStatus : ${hours}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${hour}"></td>
+            </tr>
+        </table>
+    <a href="/">return to homepage</a>
+</body>
+</html>

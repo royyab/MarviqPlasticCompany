@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <h3>Choose Date & Machine please: </h3>
+    <form th:action="@{'/'}" method="post" th:object="${form}">
+        <input type="date" th:field="*{date}" value="2018-01-07" min="2018-01-01" max="2018-01-07">
+        <select class="form-control" id="machineName" name="machineName">
+            <option th:each="machine : ${machines}" th:text="${machine}"></option>
+        </select>
+        <button type="submit">Find Data</button>
+    </form>
+    <!--<h3>For last day statuses, choose your desired Machine:</h3>-->
+    <!--<form th:action="@{'/lastdate' + '/' + ${machine}}" method="post" th:object="${friend}">-->
+        <!--<input type="hidden" th:field="*{friendId}"/>-->
+        <!--<input type="text" th:field="*{firstName}" placeholder="first name"/>-->
+        <!--<input type="text" th:field="*{lastName}" placeholder="last name"/>-->
+        <!--<input type="text" th:field="*{username}" placeholder="username"/>-->
+        <!--<input type="password" th:field="*{password}" placeholder="password"/>-->
+        <!--<button type="submit">Add</button>-->
+    <!--</form>-->
+
+
+    <!--<form action="#" th:action="@{'/lastdate' + '/' + ${machine}}" th:object="${form}" th:method="POST">-->
+        <!--<input type="date" id="start" name="selectedDate" value="2018-07-07" min="2018-07-01" max="2018-07-07">-->
+        <!--<p>Choose your machine:</p>-->
+        <!--<div>-->
+            <!--<input type="text" id="machine1"-->
+                   <!--name="contact" value="email">-->
+            <!--<label for="machine1">2x2 </label>-->
+
+            <!--<input type="radio" id="contactChoice2"-->
+                   <!--name="contact" value="phone">-->
+            <!--<label for="contactChoice2">Phone</label>-->
+
+            <!--<input type="radio" id="contactChoice3"-->
+                   <!--name="contact" value="mail">-->
+            <!--<label for="contactChoice3">Mail</label>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<button type="submit">Submit</button>-->
+        <!--</div>-->
+
+
+    <!--<ul>-->
+        <!--<li th:each="machine : ${machines}">-->
+            <!--<a th:href="@{'/lastdate' + '/' + ${machine.replace(' ','_')}}" th:text="${machine}"></a>-->
+        <!--</li>-->
+    <!--</ul>-->
+
+
+    <!--</form>-->
+</body>
+</html>
+
